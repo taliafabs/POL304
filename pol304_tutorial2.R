@@ -1,3 +1,5 @@
+## pol304 tutorial 2
+
 library(dplyr)
 ## read the data
 hprice <- read.csv("hprice.csv")
@@ -31,21 +33,19 @@ hprice_1978_treatment <- hprice_1978 %>%
 hprice_1978_control <- hprice_1978 %>%
   filter(nearinc==1)
 
-
-
-
-# mean_treatment_1978 <- mean(hprice_1978_treatment$lprice, na.rm=TRUE)
-# mean_control_1978 <- mean(hprice_1978_control$lprice, na.rm=TRUE)
-# 
-
+mean_treatment_1978 <- mean(hprice$price[hprice$nearinc==1 & hprice$year==1978])
+mean_control_1978 <- mean(hprice$price[hprice$nearinc==0 & hprice$year==1978])
 
 ## question 5
-## average house price 1981 near vs far from incinerator
-hprice_1981 <- hprice %>%
-  filter(year==1981) 
-
-
+mean_treatment_1981 <- mean(hprice$price[hprice$nearinc==1 & hprice$year==1981])
+mean_control_1981 <- mean(hprice$price[hprice$nearinc==0 & hprice$year==1981])
 
 ## question 6
+## temporal design
+temp <- mean_treatment_1981 - mean_treatment_1978
 
+## cross sectional analysis
+cross_sectional <- mean_treatment_1981 - mean_control_1981
 
+diff_in_diff <- (mean_treatment_1981 - mean_treatment_1978) - 
+  (mean_control_1981 - mean_control_1978)
