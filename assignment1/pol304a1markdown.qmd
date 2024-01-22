@@ -1,0 +1,50 @@
+---
+title: "POL304 Assignment 1"
+author: "Talia Fabregas"
+date: "23 January 2024"
+format: pdf
+editor: visual
+---
+
+```{r}
+## loading packages
+# install.packages("tidyverse")
+# install.packages("janitor")
+# install.packages("dplyr")
+library(tidyverse)
+library(janitor)
+library(dplyr)
+```
+
+## Question 1
+
+The research question that this paper investigates is: "in what ways does indiscriminate violence ..."
+
+## Question 2
+
+The theory used in this article is ...
+
+## Question 3
+
+The central research hypothesis is:
+
+## Question 3
+
+## Question 4
+
+## Question 5
+
+## Question 6
+
+## Question 7
+
+## Question 8
+
+## Question 9
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
