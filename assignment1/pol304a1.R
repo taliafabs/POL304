@@ -4,3 +4,4 @@ library(janitor)
 library(dplyr)
 
 chechen_data <- read_csv("assignment1/chechen.csv")
+chechen_data
