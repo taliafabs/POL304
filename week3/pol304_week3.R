@@ -1,7 +1,9 @@
 ## load packages
+## can use dplyr and janitor to clean data as well
 library(tidyverse)
 library(dplyr)
 library(janitor)
+library(stats)
 
 ## load the data
 vig <- read.csv("week3/vignettes.csv")
@@ -36,3 +38,57 @@ mean(vig_chi$less_than_moses)
 vig_mex$less_than_moses <- ifelse(vig_mex$self < vig_mex$moses, 1, 0)
 mean(vig_mex$less_than_moses)
 # 24.9% of respondents in Mexico think they have less power than Moses
+# Inititally, many thought they had little power, but less than a quarter
+# of respondents from Mexico thought they had less power than Moses
+
+# restrict the data to people who ranked these three vignettes in order:
+# Alison ≥ Jane ≥ Moses
+
+# China
+vig_chi <- subset(vig_chi, vig_chi$alison >= vig_chi$jane &
+                          vig_chi$jane >= vig_chi$moses)
+
+# Mexico
+vig_mex <- subset(vig_mex, vig_mex$alison >= vig_mex$jane &
+                          vig_mex$jane >= vig_mex$moses)
+
+# rank variable
+
+# China
+vig_chi$rank <- NA
+# 1
+vig_chi$rank <- ifelse(vig_chi$self < vig_chi$moses, 1, vig_chi$rank)
+# 2
+vig_chi$rank <- ifelse(vig_chi$self >= vig_chi$moses & 
+                         vig_chi$self < vig_chi$jane, 2, vig_chi$rank)
+# 3
+vig_chi$rank <- ifelse(vig_chi$self >= vig_chi$jane & 
+                         vig_chi$self < vig_chi$alison, 
+                       3, vig_chi$rank)
+# 4
+vig_chi$rank <- ifelse(vig_chi$self >= vig_chi$alison, 4, vig_chi$rank) 
+
+# Mexico
+vig_mex$rank <- NA
+# 1
+vig_mex$rank <- ifelse(vig_mex$self < vig_mex$moses, 1, vig_mex$rank)
+# 2
+vig_mex$rank <- ifelse(vig_mex$self >= vig_mex$moses & 
+                         vig_mex$self < vig_mex$jane, 2, vig_mex$rank)
+# 3
+vig_mex$rank <- ifelse(vig_mex$self >= vig_mex$jane & 
+                         vig_mex$self < vig_mex$alison, 
+                       3, vig_mex$rank)
+# 4
+vig_mex$rank <- ifelse(vig_mex$self >= vig_mex$alison, 4, vig_mex$rank) 
+
+## Create the barplots of this new variable 
+
+# China
+chi_table2 <- prop.table(table(vig_chi$rank))
+barplot(chi_table2, main = "China")
+
+# Mexico
+mex_table2 <- prop.table(table(vig_mex$rank))
+barplot(mex_table2, main = "Mexico")
+
