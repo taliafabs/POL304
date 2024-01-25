@@ -1,4 +1,3 @@
-Talia Fabregas
-POL304H1 Topics in Methods: Using Data to Understand Politics and Society
-Winter 2024 Course Work
-University of Toronto Political Science
+## Overview
+This repository contains my coursework for POL304 Using Data to Understand Politics, a course I am currently taking at the University of Toronto (Winter 2024 semester).
+
