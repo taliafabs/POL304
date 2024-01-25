@@ -14,6 +14,7 @@ editor: visual
 library(tidyverse)
 library(janitor)
 library(dplyr)
+library(knitr)
 
 ## load the data
 chechen_data <- read_csv("chechen.csv")
@@ -29,7 +30,7 @@ The research question that this paper investigates is the extent to which a stat
 
 ## Question 2
 
-What is the theory used in the article? \[Word limit: 150 words\] Do not simply copy/paste from the article. Instead, think carefully what is the set of logically consistent assumptions that lead to the article\'s main prediction. Focus on the broad strokes rather than the details. Ask yourself what are the most basic relationships/conditions that must hold in order to derive the article\'s main prediction. List these assumptions and the relationship among them. For example, if the first assumption is that the Earth is flat and the second assumption is that the edge of the Earth is in the ocean, then a logically consistent prediction would be that we should observe water pouring off of the edge of the Earth into the void. Notice that neither the assumptions nor the prediction need to be true. The assumptions are simplifications of the world; the only requirement is that they are logically consistent with one another.
+What is the theory used in the article? \[Word limit: 150 words\] Do not simply copy/paste from the article. Instead, think carefully what is the set of logically consistent assumptions that lead to the article's main prediction. Focus on the broad strokes rather than the details. Ask yourself what are the most basic relationships/conditions that must hold in order to derive the article's main prediction. List these assumptions and the relationship among them. For example, if the first assumption is that the Earth is flat and the second assumption is that the edge of the Earth is in the ocean, then a logically consistent prediction would be that we should observe water pouring off of the edge of the Earth into the void. Notice that neither the assumptions nor the prediction need to be true. The assumptions are simplifications of the world; the only requirement is that they are logically consistent with one another.
 
 The theory used in this article is ...
 
@@ -62,7 +63,7 @@ q4 <- data.frame(num_villages_shelled = num_shelled,
                 num_villages_not_shelled = num_not_shelled)
 
 # print the data frame
-print(q4)
+kable(q4)
 ```
 
 ## Question 5
