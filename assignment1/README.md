@@ -1,2 +1,4 @@
-POL304 Assignment 1
-January 24, 2024
+## Overview
+This directory contains the code I used in the process of completting Assignment 1 for POL304
+
+## File Structure
