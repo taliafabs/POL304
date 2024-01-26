@@ -191,8 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="question-1" class="level2">
 <h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
-<p>What is the research question? (Remember that a research question is general, it does not name specific places or policy areas. Also note that a research question must be open-ended, it is not a yes/no question).</p>
-<p>The research question that this paper investigates is the relationship between a state’s use of indiscriminate violence and the prevalence of insurgent attacks.</p>
+<p>The research question that this paper investigates is what the relationship is between a state’s use of indiscriminate violence and insurgent attacks.</p>
 </section>
 <section id="question-2" class="level2">
 <h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
@@ -205,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="question-3" class="level2">
 <h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <p>What is the central research hypothesis. [Answer in one sentence] Remember that, just like the research question and the theory, the hypothesis must be stated in general, rather than specific, terms.</p>
-<p>The central research hypothesis is: that …</p>
+<p>The central research hypothesis is:</p>
 </section>
 <section id="question-4" class="level2">
 <h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
@@ -269,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="question-6" class="level2">
 <h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
 <p>Considering only the pre-shelling periods, what is the difference between the average number of insurgent attacks for observations describing a shelled village and observations that do not? What does this suggest to you about the validity of comparison used for the previous question?</p>
-<p>As seen in <a href="#tbl-q6">Table&nbsp;2</a>, the average number of insurgent attacks in the pre-shelling period for observations describing a shelling and for observations that do not are nearly identical, at 2.11 and 2.15, respectively. This suggests that …</p>
+<p>As seen in <a href="#tbl-q6">Table&nbsp;2</a>, the average number of insurgent attacks in the pre-shelling period for observations describing a shelling and for observations that do not are nearly identical, at 2.11 and 2.15, respectively. This suggests that the pre-existing rate of insurgent attacks will not be a confounding variable in the difference-in-difference results.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the data into observations that do not describe a shelled village</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>not_shelled_observations <span class="ot">&lt;-</span> chechen_data <span class="sc">|&gt;</span></span>
@@ -312,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="question-7" class="level2">
 <h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
 <p>Now implement the temporal research design. Among observations describing villages that were shelled, did the number of insurgent attacks increase after being fired on?</p>
-<p>Among observations in the data set that describe villages that were shelled, the number of insurgent attacks decreased after being fired on, as seen in <a href="#tbl-q7">Table&nbsp;3</a>.</p>
+<p>Among observations in the data set that describe villages that were shelled, the number of insurgent attacks decreased after being fired on. <a href="#tbl-q7">Table&nbsp;3</a> shows the mean number of insurgent attacks in the pre- and post-shelling periods for observations that were shelled; the mean number of insurgent attacks decreased from ~2.11 before being fired on to ~1.5 after being fired on.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>q7 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_before=</span><span class="fu">mean</span>(shelled_observations<span class="sc">$</span>preattack),</span>
@@ -344,6 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="question-8" class="level2">
 <h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
 <p>Now implement a difference-in-difference design. Compute the mean difference in the difference between the pre- and post-shelling villages for villages that were shelled and for those that were not. Does this analysis support the claim that indiscriminate violence reduces insurgency attacks?</p>
+<p>This analysis supports the claim that indiscriminate violence reduces insurgency attacks. <a href="#tbl-q8">Table&nbsp;4</a> shows the mean difference in the difference between insurgency attacks in the pre- and post-shelling periods for villages that were shelled and for villages that were not shelled. The mean difference between the pre- and post-shelling periods for villages that were shelled is ~0.616, while the mean difference in the pre- and post-shelling periods for villages that were not shelled is ~0.1. Therefore, the difference-in-difference analysis shows that villages that were shelled saw a greater reduction in insurgency attacks between the pre- and post-shelling periods than villages that were not shelled, which supports the claim that indiscriminate violence reduces insurgency attacks.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean shelled before - mean shelled after</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>shelled_difference <span class="ot">=</span> <span class="fu">mean</span>(shelled_observations<span class="sc">$</span>preattack) <span class="sc">-</span> </span>
@@ -356,14 +356,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># sample average treatment effect for the treated</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>satt <span class="ot">=</span> shelled_difference <span class="sc">-</span> not_shelled_difference</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame with these numbers</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>q8 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">MeanDiffShelled =</span> shelled_difference,</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">MeanDiffNotShelled =</span> not_shelled_difference,</span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">SATT =</span> satt</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># print the table to use for reference</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-q8" class="anchored">
 <table class="table table-sm table-striped small">
