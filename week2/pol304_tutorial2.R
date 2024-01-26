@@ -47,5 +47,6 @@ temp <- mean_treatment_1981 - mean_treatment_1978
 ## cross sectional analysis
 cross_sectional <- mean_treatment_1981 - mean_control_1981
 
+## difference in difference
 diff_in_diff <- (mean_treatment_1981 - mean_treatment_1978) - 
   (mean_control_1981 - mean_control_1978)
