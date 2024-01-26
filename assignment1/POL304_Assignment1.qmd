@@ -5,6 +5,7 @@ date: "25 January 2024"
 date-format: long
 format: html
 editor: visual
+bibliography: references.bib
 ---
 
 ```{r}
@@ -131,7 +132,7 @@ kable(q6)
 
 Now implement the temporal research design. Among observations describing villages that were shelled, did the number of insurgent attacks increase after being fired on?
 
-Among observations in the data set that describe villages that were shelled, the number of insurgent attacks did not increase after being fired on, as seen in @tbl-q7.
+Among observations in the data set that describe villages that were shelled, the number of insurgent attacks decreased after being fired on, as seen in @tbl-q7.
 
 ```{r}
 #| warning: false
