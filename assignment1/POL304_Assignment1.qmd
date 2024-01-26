@@ -1,0 +1,186 @@
+---
+title: "POL304 Assignment 1"
+author: "Talia Fabregas"
+date: "25 January 2024"
+date-format: long
+format: html
+editor: visual
+---
+
+```{r}
+#| warning: false
+#| message: false
+## loading packages
+# install.packages("tidyverse")
+# install.packages("janitor")
+# install.packages("dplyr")
+# install.packages("knitr")
+library(tidyverse)
+library(janitor)
+library(dplyr)
+library(knitr)
+
+## load the data
+chechen_data <- read_csv("chechen.csv")
+
+## a sample from the data
+kable(head(chechen_data))
+```
+
+## Question 1
+
+What is the research question? (Remember that a research question is general, it does not name specific places or policy areas. Also note that a research question must be open-ended, it is not a yes/no question).
+
+The research question that this paper investigates is the relationship between a state's use of indiscriminate violence and the prevalence of insurgent attacks.
+
+## Question 2
+
+What is the theory used in the article? \[Word limit: 150 words\] Do not simply copy/paste from the article. Instead, think carefully what is the set of logically consistent assumptions that lead to the article's main prediction. Focus on the broad strokes rather than the details. Ask yourself what are the most basic relationships/conditions that must hold in order to derive the article's main prediction. List these assumptions and the relationship among them. For example, if the first assumption is that the Earth is flat and the second assumption is that the edge of the Earth is in the ocean, then a logically consistent prediction would be that we should observe water pouring off of the edge of the Earth into the void. Notice that neither the assumptions nor the prediction need to be true. The assumptions are simplifications of the world; the only requirement is that they are logically consistent with one another.
+
+-   state's use of collective targeting on noncombant populatoin produced greater insurgent violence
+
+-   theory: indiscriminate violence
+
+## Question 3
+
+What is the central research hypothesis. \[Answer in one sentence\] Remember that, just like the research question and the theory, the hypothesis must be stated in general, rather than specific, terms.
+
+The central research hypothesis is: that ...
+
+## Question 4
+
+@tbl-villagesshelled shows the number of villages that were shelled at least once by Russian Artillery and the number of villages that were not shelled during the period of interest. A total of 125 unique villages appear in the data set. Of those 125 villages, 75 were shelled at least once, and 50 were not shelled.
+
+```{r}
+#| warning: false
+#| message: false
+# count how many unique villages in the data set
+num_villages <- length(unique(chechen_data$village))
+
+# subset to only include the villages that were shelled at least once
+shelled_observations<- chechen_data |>
+  filter(fire == 1)
+
+# count the number of unique villages that were shelled
+num_shelled = length(unique(shelled_observations$village))
+
+# get the number of unique villages that were not shelled
+num_not_shelled = num_villages - num_shelled
+
+# create a data frame
+q4 <- data.frame(VillagesShelled = num_shelled,
+                VillagesNotShelled = num_not_shelled)
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| label: tbl-villagesshelled
+#| tbl-cap: "The Number of Villages in the Data Set that Were and Were Not Shelled"
+kable(q4)
+```
+
+## Question 5
+
+Start with a cross-sectional design. What is the average number of insurgent attacks for shelled vs.non-shelled villages? Would you conclude that indiscriminate violence reduces insurgent attacks? Why or why not?
+
+```{r}
+#| warning: false
+#| message: false
+#| label: tbl-q5
+#| tbl-cap: "The Number of Villages in the Data Set that Were and Were Not Shelled"
+
+# shelled villages
+
+
+# non-shelled villages
+```
+
+## Question 6
+
+Considering only the pre-shelling periods, what is the difference between the average number of insurgent attacks for observations describing a shelled village and observations that do not? What does this suggest to you about the validity of comparison used for the previous question?
+
+As seen in @tbl-q6, the average number of insurgent attacks in the pre-shelling period for observations describing a shelling and for observations that do not are nearly identical, at 2.11 and 2.15, respectively. This suggests that ...
+
+```{r}
+#| warning: false
+#| message: false
+#| label: tbl-q6
+#| tbl-cap: "Average Number of Insurgent Attacks during Pre-Shelling Periods in Shelled Village vs Non-Shelled Village Observations"
+
+# Subset the data into observations that do not describe a shelled village
+not_shelled_observations <- chechen_data |>
+  filter(fire == 0)
+
+# Compute the mean number of insurgent attacks for observations that describe a shelled village
+# and observations that do not during only the pre-shelling periods
+avg_pre_shelled <- mean(shelled_observations$preattack)
+avg_pre_not_shelled <- mean(not_shelled_observations$preattack)
+
+# Create a data frame
+q6 <- data.frame(
+  Shelled = avg_pre_shelled,
+  NotShelled = avg_pre_not_shelled
+)
+
+# Print the table using knitr
+kable(q6)
+```
+
+## Question 7
+
+Now implement the temporal research design. Among observations describing villages that were shelled, did the number of insurgent attacks increase after being fired on?
+
+Among observations in the data set that describe villages that were shelled, the number of insurgent attacks did not increase after being fired on, as seen in @tbl-q7.
+
+```{r}
+#| warning: false
+#| message: false
+#| label: tbl-q7
+#| tbl-cap: "Mean Number of Insurgent Attacks in Villages that Were Shelled, Before and After Being Fired On"
+
+q7 <- data.frame(
+  mean_before=mean(shelled_observations$preattack),
+  mean_after=mean(shelled_observations$postattack)
+)
+
+kable(q7)
+```
+
+## Question 8
+
+Now implement a difference-in-difference design. Compute the mean difference in the difference between the pre- and post-shelling villages for villages that were shelled and for those that were not. Does this analysis support the claim that indiscriminate violence reduces insurgency attacks?
+
+```{r}
+#| warning: false
+#| message: false
+#| label: tbl-q8
+#| tbl-cap: Mean Difference in Difference Between Pre- and Post-Shelling Villages for Villages that were Shelled vs Villages that were not
+
+# mean shelled before - mean shelled after
+shelled_difference = mean(shelled_observations$preattack) - 
+  mean(shelled_observations$postattack)
+
+# mean not shelled before - mean not shelled after
+not_shelled_difference = mean(not_shelled_observations$preattack) -
+  mean(not_shelled_observations$postattack)
+
+# sample average treatment effect for the treated
+satt = shelled_difference - not_shelled_difference
+
+
+q8 <- data.frame(
+  MeanDiffShelled = shelled_difference,
+  MeanDiffNotShelled = not_shelled_difference,
+  SATT = satt
+)
+
+kable(q8)
+
+```
+
+## Question 9
+
+Which of the three designs--cross-sectional, temporal, or difference-in-difference--is the most appropriate, given whether or not the data meet the assumptions for each?
+
+## References
