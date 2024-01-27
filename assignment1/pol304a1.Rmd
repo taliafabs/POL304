@@ -49,7 +49,7 @@ A state's use of indiscriminate violence can reduce insurgent attacks under cert
 
 ## Question 4
 
-@tbl-villagesshelled shows the number of villages that were shelled at least once by Russian Artillery and the number of villages that were not shelled during the period of interest. A total of 125 unique villages appear in the data set. Of those 125 villages, 75 were shelled at least once, and 50 were not shelled.
+The table below shows the number of villages that were shelled at least once by Russian Artillery and the number of villages that were not shelled during the period of interest. A total of 125 unique villages appear in the data set. Of those 125 villages, 75 were shelled at least once, and 50 were not shelled.
 
 ```{r}
 #| warning: false
@@ -79,7 +79,7 @@ kable(q4)
 
 ## Question 5
 
-Based on the results of the cross-sectional analysis conducted, I would conclude that indiscriminate violence reduces insurgent attacks. @tbl-q5 shows the average number of insurgent attacks for shelled vs. non-shelled villages, and we can see that the difference in the average number of insurgent attacks between the shelled and non-shelled villages is \~0.55.
+Based on the results of the cross-sectional analysis conducted, I would conclude that indiscriminate violence reduces insurgent attacks. The table below shows the average number of insurgent attacks for shelled vs. non-shelled villages, and we can see that the difference in the average number of insurgent attacks between the shelled and non-shelled villages is \~0.55.
 
 ```{r}
 #| warning: false
@@ -111,7 +111,7 @@ kable(q5)
 
 ## Question 6
 
-As seen in @tbl-q6, the average number of insurgent attacks in the pre-shelling period (a pre-treatment variable for each of the treatment and control groups) for observations describing a shelling and for observations that do not are nearly identical, at 2.11 and 2.15, respectively. There is very little difference between this pre-treatment variable in the treatment and control groups, which suggests that the comparison in the previous question exhibits strong internal validity. Therefore, it is reasonable to believe that the treatment and control groups are identical on average in terms of all confounders (Chyzh, Lecture 2, Slide 15).
+As seen in the table below, the average number of insurgent attacks in the pre-shelling period (a pre-treatment variable for each of the treatment and control groups) for observations describing a shelling and for observations that do not are nearly identical, at 2.11 and 2.15, respectively. There is very little difference between this pre-treatment variable in the treatment and control groups, which suggests that the comparison in the previous question exhibits strong internal validity. Therefore, it is reasonable to believe that the treatment and control groups are identical on average in terms of all confounders (Chyzh, Lecture 2, Slide 15).
 
 ```{r}
 #| warning: false
@@ -136,7 +136,7 @@ kable(q6)
 
 ## Question 7
 
-Among observations in the data set that describe villages that were shelled, the number of insurgent attacks decreased after being fired on. @tbl-q7 shows the mean number of insurgent attacks in the pre- and post-shelling periods for observations that were shelled; the mean number of insurgent attacks decreased from \~2.11 before being fired on to \~1.5 after being fired on.
+Among observations in the data set that describe villages that were shelled, the number of insurgent attacks decreased after being fired on. The table below shows the mean number of insurgent attacks in the pre- and post-shelling periods for observations that were shelled; the mean number of insurgent attacks decreased from \~2.11 before being fired on to \~1.5 after being fired on.
 
 ```{r}
 #| warning: false
@@ -156,7 +156,7 @@ kable(q7)
 
 ## Question 8
 
-This analysis supports the claim that indiscriminate violence reduces insurgency attacks. @tbl-q8 shows the mean difference in the difference between insurgency attacks in the pre- and post-shelling periods for villages that were shelled and for villages that were not shelled. The mean difference between the pre- and post-shelling periods for villages that were shelled is \~0.616, while the mean difference in the pre- and post-shelling periods for villages that were not shelled is \~0.1. Therefore, the difference-in-difference analysis shows that villages that were shelled saw a greater reduction in insurgency attacks between the pre- and post-shelling periods than villages that were not shelled, which supports the claim that indiscriminate violence reduces insurgency attacks.
+This analysis supports the claim that indiscriminate violence reduces insurgency attacks. The table below shows the mean difference in the difference between insurgency attacks in the pre- and post-shelling periods for villages that were shelled and for villages that were not shelled. The mean difference between the pre- and post-shelling periods for villages that were shelled is \~0.616, while the mean difference in the pre- and post-shelling periods for villages that were not shelled is \~0.1. Therefore, the difference-in-difference analysis shows that villages that were shelled saw a greater reduction in insurgency attacks between the pre- and post-shelling periods than villages that were not shelled, which supports the claim that indiscriminate violence reduces insurgency attacks.
 
 ```{r}
 #| warning: false
@@ -190,7 +190,7 @@ kable(q8)
 
 Which of the three designs--cross-sectional, temporal, or difference-in-difference--is the most appropriate, given whether or not the data meet the assumptions for each?
 
-A cross-sectional design assumes that the treatment and control groups are comparable. In question 5 (shown in @tbl-q5) we found that the average number of insurgent attacks in the 90 days before is nearly identical for both the treatment group and the control group. This demonstrates that both groups are comparable, as they had extremely similar average levels of insurgent violence beforehand.
+A cross-sectional design assumes that the treatment and control groups are comparable. In question 5 (shown in the table under question 5) we found that the average number of insurgent attacks in the 90 days before is nearly identical for both the treatment group and the control group. This demonstrates that both groups are comparable, as they had extremely similar average levels of insurgent violence beforehand.
 
 A temporal design assumes that there is no time-varying confounding. This data set only counts the number of insurgent attacks in the 90 days immediately preceding and the 90 days immediately following the attack for both the treatment group (shelled village observations) and the control group (non-shelled village observations). The exact same periods of time are examined for both the treatment and control group, therefore the data does meet the assumptions for a temporal design.
 
