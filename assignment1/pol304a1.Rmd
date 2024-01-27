@@ -1,14 +1,11 @@
 ---
-title: "POL304 Assignment 1"
-author: "Talia Fabregas"
-date: "25 January 2024"
-date-format: long
-format: html
-editor: visual
-bibliography: references.bib
+title: "POL304H1 Assignment 1"
+author: Talia Fabregas
+output: html_document
+date: "2024-01-26"
 ---
 
-The code and data associated with the completion of this assignment can be accessed via [my GitHub repository](https://github.com/taliafabs/POL304H1-winter2024.git). The assignment was completed using R Programming Language and the tidyverse @tidyverse, janitor @janitor and dplyr @dplyr for sub-setting data, and knitr @knitrcite for the tables. The analysis is based on the research paper titled "Does Indiscriminate Violence Incite Insurgent Attacks? Evidence from Chechnya" @chechnya.
+The code and data associated with the completion of this assignment can be accessed via my GitHub repository. The assignment was completed using R Programming Language and the tidyverse, janitor and dplyr for sub-setting data, and knitr for the tables. The analysis is based on the research paper titled "Does Indiscriminate Violence Incite Insurgent Attacks? Evidence from Chechnya"
 
 ```{r}
 #| warning: false
@@ -187,7 +184,6 @@ q8 <- data.frame(
 
 # print the table to use for reference
 kable(q8)
-
 ```
 
 ## Question 9
@@ -201,3 +197,13 @@ A temporal design assumes that there is no time-varying confounding. This data s
 A difference-in-difference design assumes that there is a parallel time trend, which covers the assumption that there is no group-specific or time-varying confounding. This data set meets the assumptions for this, as shown in question 5, @tbl-q5, with the nearly identical levels of insurgent violence in the 90 days before the attack, as well as the controlled observation period that only takes into account the 90 days immediately following the attack. Therefore, difference-in-difference is the most appropriate for this data set.
 
 ## References
+
+Firke, Sam. 2023. *Janitor: Simple Tools for Examining and Cleaning Dirty Data*. <https://github.com/sfirke/janitor>.
+
+Lyall, Jason. 2009. \"Does Indiscriminate Violence Incite Insurgent Attacks? Evidence from Chechnya.\" *Journal of Conflict Resolution* 53 (3).
+
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D\'Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. \"Welcome to the tidyverse.\" *Journal of Open Source Software* 4 (43): 1686. <https://doi.org/10.21105/joss.01686>.
+
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. *Dplyr: A Grammar of Data Manipulation*. <https://dplyr.tidyverse.org>.
+
+Xie, Yihui. 2014. *Knitr: A Comprehensive Tool for Reproducible Research in r.*
