@@ -56,7 +56,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="POL304_Assignment1_files/libs/clipboard/clipboard.min.js"></script>
@@ -108,6 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p>The code and data associated with the completion of this assignment can be accessed via <a href="https://github.com/taliafabs/POL304H1-winter2024.git">my GitHub repository</a>. The assignment was completed using R Programming Language and the tidyverse <span class="citation" data-cites="tidyverse">Wickham et al. (<a href="#ref-tidyverse" role="doc-biblioref">2019</a>)</span>, janitor <span class="citation" data-cites="janitor">Firke (<a href="#ref-janitor" role="doc-biblioref">2023</a>)</span> and dplyr <span class="citation" data-cites="dplyr">Wickham et al. (<a href="#ref-dplyr" role="doc-biblioref">2023</a>)</span> for sub-setting data, and knitr <span class="citation" data-cites="knitrcite">Xie (<a href="#ref-knitrcite" role="doc-biblioref">2014</a>)</span> for the tables. The analysis is based on the research paper titled “Does Indiscriminate Violence Incite Insurgent Attacks? Evidence from Chechnya” <span class="citation" data-cites="chechnya">Lyall (<a href="#ref-chechnya" role="doc-biblioref">2009</a>)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## loading packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse")</span></span>
@@ -122,8 +142,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="do">## load the data</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>chechen_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"chechen.csv"</span>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="do">## a sample from the data</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(chechen_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># time-varying confounder is controlled, as only 90 days before and after shelling are observed</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="do">## a sample from the data</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(chechen_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -191,20 +213,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="question-1" class="level2">
 <h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
-<p>The research question that this paper investigates is what the relationship is between a state’s use of indiscriminate violence and insurgent attacks.</p>
+<p>The research question that this article aims to explore is:</p>
+<p>What is the relationship between a state’s use of indiscriminate violence and insurgent attacks?</p>
 </section>
 <section id="question-2" class="level2">
 <h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<p>What is the theory used in the article? [Word limit: 150 words] Do not simply copy/paste from the article. Instead, think carefully what is the set of logically consistent assumptions that lead to the article’s main prediction. Focus on the broad strokes rather than the details. Ask yourself what are the most basic relationships/conditions that must hold in order to derive the article’s main prediction. List these assumptions and the relationship among them. For example, if the first assumption is that the Earth is flat and the second assumption is that the edge of the Earth is in the ocean, then a logically consistent prediction would be that we should observe water pouring off of the edge of the Earth into the void. Notice that neither the assumptions nor the prediction need to be true. The assumptions are simplifications of the world; the only requirement is that they are logically consistent with one another.</p>
-<ul>
-<li><p>state’s use of collective targeting on noncombant populatoin produced greater insurgent violence</p></li>
-<li><p>theory: indiscriminate violence</p></li>
-</ul>
+<p>It is widely theorized and agreed upon amongst academics that indiscriminate violence is counterproductive in the reduction of insurgent violence because it gives insurgents the ability to convince the civilian population that the risks of joining them and undermining the state is worth it, might offer them protection, and appears less dangerous than non-participation, despite the potential for serious consequences <span class="citation" data-cites="chechnya">Lyall (<a href="#ref-chechnya" role="doc-biblioref">2009</a>)</span> .</p>
+<p>However, this might not be the case if states use indiscriminate violence when the insurgency is weak and unable to convince civilians that joining them offers any protection from violence. This leads to the theory that a state’s use of indiscriminate violence can reduce insurgency attacks by depleting the insurgency's war resources and leading civilians to believe that the insurgency does not offer them any safety and is responsible for provoking the state’s violent response, which can promote collective action against the insurgency between civilians and the state.</p>
 </section>
 <section id="question-3" class="level2">
 <h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
-<p>What is the central research hypothesis. [Answer in one sentence] Remember that, just like the research question and the theory, the hypothesis must be stated in general, rather than specific, terms.</p>
 <p>The central research hypothesis is:</p>
+<p>A state’s use of indiscriminate violence can reduce insurgent attacks under certain circumstances.</p>
 </section>
 <section id="question-4" class="level2">
 <h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
@@ -225,10 +245,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>q4 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">VillagesShelled =</span> num_shelled,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">VillagesNotShelled =</span> num_not_shelled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">VillagesNotShelled =</span> num_not_shelled)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># print the table for reference</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-villagesshelled" class="anchored">
 <table class="table table-sm table-striped small">
@@ -252,45 +272,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="question-5" class="level2">
 <h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
-<p>Start with a cross-sectional design. What is the average number of insurgent attacks for shelled vs.non-shelled villages? Would you conclude that indiscriminate violence reduces insurgent attacks? Why or why not?</p>
-<div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shelled villages</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># non-shelled villages</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="tbl-q5" class="cell tbl-parent quarto-layout-panel anchored" data-tbl-cap="The Number of Villages in the Data Set that Were and Were Not Shelled">
-<div class="panel-caption table-caption">
-<p><strong>?(caption)</strong></p>
+<p>Based on the results of the cross-sectional analysis conducted, I would conclude that indiscriminate violence reduces insurgent attacks. <a href="#tbl-q5">Table&nbsp;2</a> shows the average number of insurgent attacks for shelled vs.&nbsp;non-shelled villages, and we can see that the difference in the average number of insurgent attacks between the shelled and non-shelled villages is ~0.55.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the data into observations that do not describe a shelled village</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>not_shelled_observations <span class="ot">&lt;-</span> chechen_data <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(fire <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Already have the shelled observations from Question 4</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># shelled villages</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Y_shelled_after <span class="ot">=</span> <span class="fu">mean</span>(shelled_observations<span class="sc">$</span>postattack)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># non-shelled villages</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>Y_nonshelled_after <span class="ot">=</span> <span class="fu">mean</span>(not_shelled_observations<span class="sc">$</span>postattack)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>q5 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">MeanShelledAfter =</span> Y_shelled_after,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">MeanNonShelledAfter =</span> Y_nonshelled_after,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute the mean number of insurgent attacks after the fires</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">SATE =</span> Y_shelled_after <span class="sc">-</span> Y_nonshelled_after</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-q5" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2: The Average Number of Insurgent Attacks for Shelled vs.&nbsp;Non-Shelled Villages</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">MeanShelledAfter</th>
+<th style="text-align: right;">MeanNonShelledAfter</th>
+<th style="text-align: right;">SATE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1.496855</td>
+<td style="text-align: right;">2.050314</td>
+<td style="text-align: right;">-0.5534591</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 </section>
 <section id="question-6" class="level2">
 <h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
-<p>Considering only the pre-shelling periods, what is the difference between the average number of insurgent attacks for observations describing a shelled village and observations that do not? What does this suggest to you about the validity of comparison used for the previous question?</p>
-<p>As seen in <a href="#tbl-q6">Table&nbsp;2</a>, the average number of insurgent attacks in the pre-shelling period for observations describing a shelling and for observations that do not are nearly identical, at 2.11 and 2.15, respectively. This suggests that the pre-existing rate of insurgent attacks will not be a confounding variable in the difference-in-difference results.</p>
+<p>As seen in <a href="#tbl-q6">Table&nbsp;3</a>, the average number of insurgent attacks in the pre-shelling period (a pre-treatment variable for each of the treatment and control groups) for observations describing a shelling and for observations that do not are nearly identical, at 2.11 and 2.15, respectively. There is very little difference between this pre-treatment variable in the treatment and control groups, which suggests that the comparison in the previous question exhibits strong internal validity. Therefore, it is reasonable to believe that the treatment and control groups are identical on average in terms of all confounders (Chyzh, Lecture 2, Slide 15).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the data into observations that do not describe a shelled village</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>not_shelled_observations <span class="ot">&lt;-</span> chechen_data <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(fire <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the mean number of insurgent attacks for observations that describe a shelled village</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># and observations that do not during only the pre-shelling periods</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>avg_pre_shelled <span class="ot">&lt;-</span> <span class="fu">mean</span>(shelled_observations<span class="sc">$</span>preattack)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>avg_pre_not_shelled <span class="ot">&lt;-</span> <span class="fu">mean</span>(not_shelled_observations<span class="sc">$</span>preattack)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>q6 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Shelled =</span> avg_pre_shelled,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">NotShelled =</span> avg_pre_not_shelled</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table using knitr</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the mean number of insurgent attacks for observations that describe a shelled village</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and observations that do not during only the pre-shelling periods</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>avg_pre_shelled <span class="ot">&lt;-</span> <span class="fu">mean</span>(shelled_observations<span class="sc">$</span>preattack)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>avg_pre_not_shelled <span class="ot">&lt;-</span> <span class="fu">mean</span>(not_shelled_observations<span class="sc">$</span>preattack)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>q6 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Shelled =</span> avg_pre_shelled,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">NotShelled =</span> avg_pre_not_shelled</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table using knitr</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-q6" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;2: Average Number of Insurgent Attacks during Pre-Shelling Periods in Shelled Village vs Non-Shelled Village Observations</caption>
+<caption>Table&nbsp;3: Average Number of Insurgent Attacks during Pre-Shelling Periods in Shelled Village vs Non-Shelled Village Observations</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">Shelled</th>
@@ -310,19 +357,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="question-7" class="level2">
 <h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
-<p>Now implement the temporal research design. Among observations describing villages that were shelled, did the number of insurgent attacks increase after being fired on?</p>
-<p>Among observations in the data set that describe villages that were shelled, the number of insurgent attacks decreased after being fired on. <a href="#tbl-q7">Table&nbsp;3</a> shows the mean number of insurgent attacks in the pre- and post-shelling periods for observations that were shelled; the mean number of insurgent attacks decreased from ~2.11 before being fired on to ~1.5 after being fired on.</p>
+<p>Among observations in the data set that describe villages that were shelled, the number of insurgent attacks decreased after being fired on. <a href="#tbl-q7">Table&nbsp;4</a> shows the mean number of insurgent attacks in the pre- and post-shelling periods for observations that were shelled; the mean number of insurgent attacks decreased from ~2.11 before being fired on to ~1.5 after being fired on.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>q7 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_before=</span><span class="fu">mean</span>(shelled_observations<span class="sc">$</span>preattack),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_after=</span><span class="fu">mean</span>(shelled_observations<span class="sc">$</span>postattack)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare villages that were shelled before and after</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>q7 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_before=</span><span class="fu">mean</span>(shelled_observations<span class="sc">$</span>preattack),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_after=</span><span class="fu">mean</span>(shelled_observations<span class="sc">$</span>postattack)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table for reference</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-q7" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;3: Mean Number of Insurgent Attacks in Villages that Were Shelled, Before and After Being Fired On</caption>
+<caption>Table&nbsp;4: Mean Number of Insurgent Attacks in Villages that Were Shelled, Before and After Being Fired On</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">mean_before</th>
@@ -342,33 +390,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="question-8" class="level2">
 <h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
-<p>Now implement a difference-in-difference design. Compute the mean difference in the difference between the pre- and post-shelling villages for villages that were shelled and for those that were not. Does this analysis support the claim that indiscriminate violence reduces insurgency attacks?</p>
-<p>This analysis supports the claim that indiscriminate violence reduces insurgency attacks. <a href="#tbl-q8">Table&nbsp;4</a> shows the mean difference in the difference between insurgency attacks in the pre- and post-shelling periods for villages that were shelled and for villages that were not shelled. The mean difference between the pre- and post-shelling periods for villages that were shelled is ~0.616, while the mean difference in the pre- and post-shelling periods for villages that were not shelled is ~0.1. Therefore, the difference-in-difference analysis shows that villages that were shelled saw a greater reduction in insurgency attacks between the pre- and post-shelling periods than villages that were not shelled, which supports the claim that indiscriminate violence reduces insurgency attacks.</p>
+<p>This analysis supports the claim that indiscriminate violence reduces insurgency attacks. <a href="#tbl-q8">Table&nbsp;5</a> shows the mean difference in the difference between insurgency attacks in the pre- and post-shelling periods for villages that were shelled and for villages that were not shelled. The mean difference between the pre- and post-shelling periods for villages that were shelled is ~0.616, while the mean difference in the pre- and post-shelling periods for villages that were not shelled is ~0.1. Therefore, the difference-in-difference analysis shows that villages that were shelled saw a greater reduction in insurgency attacks between the pre- and post-shelling periods than villages that were not shelled, which supports the claim that indiscriminate violence reduces insurgency attacks.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean shelled before - mean shelled after</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>shelled_difference <span class="ot">=</span> <span class="fu">mean</span>(shelled_observations<span class="sc">$</span>preattack) <span class="sc">-</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(shelled_observations<span class="sc">$</span>postattack)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># mean not shelled before - mean not shelled after</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>not_shelled_difference <span class="ot">=</span> <span class="fu">mean</span>(not_shelled_observations<span class="sc">$</span>preattack) <span class="sc">-</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(not_shelled_observations<span class="sc">$</span>postattack)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># sample average treatment effect for the treated</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>satt <span class="ot">=</span> shelled_difference <span class="sc">-</span> not_shelled_difference</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame with these numbers</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>q8 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">MeanDiffShelled =</span> shelled_difference,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">MeanDiffNotShelled =</span> not_shelled_difference,</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">SATT =</span> satt</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># print the table to use for reference</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean shelled before - mean shelled after</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>shelled_difference <span class="ot">=</span> <span class="fu">mean</span>(shelled_observations<span class="sc">$</span>preattack) <span class="sc">-</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(shelled_observations<span class="sc">$</span>postattack)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># mean not shelled before - mean not shelled after</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>not_shelled_difference <span class="ot">=</span> <span class="fu">mean</span>(not_shelled_observations<span class="sc">$</span>preattack) <span class="sc">-</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(not_shelled_observations<span class="sc">$</span>postattack)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the sample average treatment effect for the treated</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>satt <span class="ot">=</span> shelled_difference <span class="sc">-</span> not_shelled_difference</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame with these numbers</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>q8 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">MeanDiffShelled =</span> shelled_difference,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">MeanDiffNotShelled =</span> not_shelled_difference,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">SATT =</span> satt</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># print the table to use for reference</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(q8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-q8" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;4: Mean Difference in Difference Between Pre- and Post-Shelling Villages for Villages that were Shelled vs Villages that were not</caption>
+<caption>Table&nbsp;5: Mean Difference in Difference Between Pre- and Post-Shelling Villages for Villages that were Shelled vs Villages that were not</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">MeanDiffShelled</th>
@@ -391,12 +438,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="question-9" class="level2">
 <h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
 <p>Which of the three designs–cross-sectional, temporal, or difference-in-difference–is the most appropriate, given whether or not the data meet the assumptions for each?</p>
+<p>A cross-sectional design assumes that the treatment and control groups are comparable. In question 5 (shown in <a href="#tbl-q5">Table&nbsp;2</a>) we found that the average number of insurgent attacks in the 90 days before is nearly identical for both the treatment group and the control group. This demonstrates that both groups are comparable, as they had extremely similar average levels of insurgent violence beforehand.</p>
+<p>A temporal design assumes that there is no time-varying confounding. This data set only counts the number of insurgent attacks in the 90 days immediately preceding and the 90 days immediately following the attack for both the treatment group (shelled village observations) and the control group (non-shelled village observations). The exact same periods of time are examined for both the treatment and control group, therefore the data does meet the assumptions for a temporal design.</p>
+<p>A difference-in-difference design assumes that there is a parallel time trend, which covers the assumption that there is no group-specific or time-varying confounding. This data set meets the assumptions for this, as shown in question 5, <a href="#tbl-q5">Table&nbsp;2</a>, with the nearly identical levels of insurgent violence in the 90 days before the attack, as well as the controlled observation period that only takes into account the 90 days immediately following the attack. Therefore, difference-in-difference is the most appropriate for this data set.</p>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="references" class="level2 unnumbered">
+
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-janitor" class="csl-entry" role="listitem">
+Firke, Sam. 2023. <em>Janitor: Simple Tools for Examining and Cleaning Dirty Data</em>. <a href="https://github.com/sfirke/janitor">https://github.com/sfirke/janitor</a>.
+</div>
+<div id="ref-chechnya" class="csl-entry" role="listitem">
+Lyall, Jason. 2009. <span>“Does Indiscriminate Violence Incite Insurgent Attacks? Evidence from Chechnya.”</span> <em>Journal of Conflict Resolution</em> 53 (3).
+</div>
+<div id="ref-tidyverse" class="csl-entry" role="listitem">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div id="ref-dplyr" class="csl-entry" role="listitem">
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>.
+</div>
+<div id="ref-knitrcite" class="csl-entry" role="listitem">
+Xie, Yihui. 2014. <em>Knitr: A Comprehensive Tool for Reproducible Research in r.</em>
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
