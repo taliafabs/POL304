@@ -1,0 +1,22 @@
+---
+title: "POL304 Week 4 Lab"
+author: "Talia Fabregas"
+date: "2024-01-29"
+output: pdf_document
+---
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(janitor)
+library(knitr)
+library(readr)
+```
+
+```{r setup, include=FALSE}
+social <- read_csv("social.csv")
+social$messages<-as.factor(social$messages)
+levels(social$messages) # base level is `Civic'
+kable(head(social))
+```
+
