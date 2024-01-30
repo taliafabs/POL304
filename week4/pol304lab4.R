@@ -9,6 +9,7 @@ coef(fit)
 round(coef(fit),3)
 
 ## Create binary indicator variable for each of the 4 categories
+## alternatively, as.numeric can be used instead of ifelse
 social$control <- ifelse(social$messages=="Control", 1, 0)
 social$civic <- ifelse(social$messages=="Civic Duty", 1, 0)
 social$hawthorne <- ifelse(social$messages=="Hawthorne", 1, 0)
@@ -25,14 +26,35 @@ round(coef(fit1),3)
 ## hawthorne associated w 2.6 percentage point increase
 
 ## Question 1
+## create variable for age in 2008
 social$age <- 2008 - social$yearofbirth
 
 ## Question 2
-
+fit_age <- lm(primary2008 ~ civic + neighbors + hawthorne + age, data=social)
+coef(fit_age)
+round(coef(fit_age),3)
 
 
 ## Question 3
+## no, the effect of each treatment did not change
 
 ## Question 4
+## a one-year increase in age is associated w a 0.4 percentage point increase
+## in turnout
 
 ## Question 5
+## age 18
+new_data18 =data.frame(civic=0, 
+                    neighbors=0, 
+                    hawthorne=0, 
+                    age=18)
+predict(fit_age, new_data18)
+## 15.6% predicted turnout
+
+## age 40
+new_data40 =data.frame(civic=0, 
+                       neighbors=0, 
+                       hawthorne=0, 
+                       age=40)
+predict(fit_age, new_data40)
+## 24.76% predicted turnout
