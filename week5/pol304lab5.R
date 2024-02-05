@@ -1,3 +1,9 @@
+## POL304 Week 5 Tutorial
+
+## load packages
+## install.packages("ggplot2")
+library(ggplot2)
+
 MP_data <- read_csv("week5/MPs.csv")
 MPs_labour <- subset(MP_data, subset = (party == "labour"))
 MPs_tory <- subset(MP_data, subset = (party == "tory"))
@@ -59,7 +65,9 @@ lm(literate91 ~ pscore, data = dta.above)
 
 ## Question 1: calulate causal effect of government funding on poverty rate
 ## (poverty91)
+lm(poverty91 ~ pscore, data = dta.below)
+lm(poverty91 ~ pscore, data = dta.above)
 
-## Question 2
+## Question 2: Scatter plot
 
-## Question 3
+## Question 3: Assumptions
