@@ -67,7 +67,38 @@ lm(literate91 ~ pscore, data = dta.above)
 ## (poverty91)
 lm(poverty91 ~ pscore, data = dta.below)
 lm(poverty91 ~ pscore, data = dta.above)
+## There is a 6 percentage decrease at the intercept
 
 ## Question 2: Scatter plot
+## use ggplot to visualize this regression discontinuity
+ggplot() + 
+  geom_point(aes(x=pscore, y=poverty91),
+             (data=subset(data, (data$pscore >= -3 & data$pscore <= 3))), color="darkgrey") +
+  geom_smooth(aes(x=pscore, y=poverty91), data=dta.below, method=lm, se=FALSE, color="purple") +
+  geom_smooth(aes(x=pscore, y=poverty91), data=dta.above, method=lm, se=FALSE, color="purple") +
+  theme_minimal()
+
+## Shows that funding has a negative effect on poverty rates
+## the plot shows a negative jump at the intercept
 
 ## Question 3: Assumptions
+## In order to interpret this effect as causal, the assumption that the poverty 
+## rates were comparable before the treatment. We do not want a situation
+## where there was a significant difference in the poverty rates above and
+## below the threshold in the pre-treatment data.
+## Check the variable poverty81 before and after the treatment
+## Can also check the same plot for 1981
+
+poverty1980 <- ggplot() + 
+    geom_point(aes(x=pscore, y=poverty80),
+               (data=subset(data, (data$pscore >= -3 & data$pscore <= 3))), color="pink") +
+    geom_smooth(aes(x=pscore, y=poverty80), data=dta.below, method=lm, se=FALSE, color="purple") +
+    geom_smooth(aes(x=pscore, y=poverty80), data=dta.above, method=lm, se=FALSE, color="purple")
+print(poverty1980)
+
+## Running the regression lines for the two groups before the treatment
+lm(poverty80 ~ pscore, data = dta.below)
+lm(poverty80 ~ pscore, data = dta.above)
+
+## There is a three percentage point difference in the two groups' poverty rates
+## in 1980, before the treatment was administered
