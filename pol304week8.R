@@ -1,4 +1,5 @@
-# check if you already have it
+# POL304 week 8 lecture R Script
+# workplace setup
 library(tidyverse)
 library(magrittr)
 library(rvest)
