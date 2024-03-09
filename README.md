@@ -3,6 +3,7 @@ This repository contains my coursework for POL304 Using Data to Understand Polit
 
 ## File structure
 - `assignment1` contains the data, code, and paper associated with Assignment 1, which was submitted on January 26 2024.
+- `assignment2` 
 - `week1` contains the data and code associated with week 1 course materials.
 - `week2` contains the data and code associated with week 2 course materials.
 - `week3` contains the data and code associated with week 3 course materials.
