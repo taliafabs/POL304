@@ -1,7 +1,7 @@
 #### Preamble ####
 # Purpose: POL304 Week 9 R Script
 # Author: Talia Fabregas
-# Date: 11 March 2024
+# Date: March 11 2024
 # Contact: talia.fabregas@mail.utoronto.ca
 # License: n/a
 # Pre-requisites: 
