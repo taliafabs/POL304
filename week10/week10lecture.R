@@ -23,8 +23,13 @@ ggraph<-graph_from_adjacency_matrix(coleman[1,,], mode="undirected", diag=FALSE)
 # plot it
 plot(ggraph, vertex.color="black", vertex.size=5, vertex.label=NA)
 
+# calculate degree centrality using the degree function from the igraph package
 degree.cent <- igraph::degree(ggraph)
+# this will show the degree centrality of every node in the network
 degree.cent
+# calculate closeness centrality
+closeness_centrality <- igraph::closeness(ggraph)
+closeness_centrality
 
 ## visualize information speed
 V(ggraph)$color <- ifelse(V(ggraph)$name == 21, "red", "grey")
