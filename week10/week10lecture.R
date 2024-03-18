@@ -57,6 +57,7 @@ V(ggraph)$color[V(ggraph)$name %in% neighbors(ggraph,21)]<- "pink"
 V(ggraph)$color[V(ggraph)$name == 21]<- "red"
 plot(ggraph, vertex.label=NA)
 
+# Example (slide 35)
 el <- matrix( c("1", "2", "1", "3","2","3","3","5","2","4","2","5","3","4","4","5","4","7","6","5","5","7","6","7","6","8", "8","9","9","10", "8","12", "11","12",  "12","13","12","14","12","15","12","16"), nc = 2, byrow = TRUE)
 g<-graph_from_edgelist(el, directed=F)
 # plot the new graph
