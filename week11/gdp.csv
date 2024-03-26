@@ -1,0 +1,213 @@
+Country,Year,GDP
+United States,2023,26949643
+China,2023,17700899
+Germany,2023,4429838
+Japan,2023,4230862
+India,2023,3732224
+United Kingdom,2023,3332059
+France,2023,3049016
+Italy,2023,2186082
+Brazil,2023,2126809
+Canada,2023,2117805
+Russia,2023,1862470
+Mexico,2023,1811468
+South Korea,2023,1709232
+Australia,2023,1687713
+Spain,2023,1582054
+Indonesia,2023,1417387
+Turkey,2023,1154600
+Netherlands,2023,1092748
+Saudi Arabia,2023,1069437
+Switzerland,2023,905684
+Poland,2023,842172
+Taiwan,2023,751930
+Belgium,2023,627511
+Argentina,2023,621833
+Sweden,2023,597110
+Ireland,2023,589569
+Norway,2023,546768
+Austria,2023,526182
+Israel,2023,521688
+Thailand,2023,512193
+United Arab Emirates,2023,509179
+Singapore,2023,497347
+Bangladesh,2023,446349
+Philippines,2023,435675
+Vietnam,2023,433356
+Malaysia,2023,430895
+Denmark,2023,420800
+Egypt,2023,398397
+Nigeria,2023,390002
+Hong Kong,2023,385546
+South Africa,2023,380906
+Iran,2023,366438
+Colombia,2023,363835
+Romania,2023,350414
+Chile,2023,344400
+Pakistan,2023,340636
+Czech Republic,2023,335243
+Finland,2023,305689
+Iraq,2023,297695
+Portugal,2023,276432
+Peru,2023,264636
+Kazakhstan,2023,259292
+New Zealand,2023,249415
+Greece,2023,242385
+Qatar,2023,235500
+Algeria,2023,224107
+Hungary,2023,203829
+Ukraine,2023,173413
+Kuwait,2023,159687
+Ethiopia,2023,155804
+Morocco,2023,147343
+Slovakia,2023,133044
+Cuba,NA,NA
+Dominican Republic,2023,120629
+Ecuador,2023,118686
+Puerto Rico,2023,117515
+Kenya,2023,112749
+Oman,2023,108282
+Bulgaria,2023,103099
+Guatemala,2023,102765
+Angola,2023,93796
+Venezuela,2023,92210
+Uzbekistan,2023,90392
+Luxembourg,2023,89095
+Costa Rica,2023,85590
+Tanzania,2023,84033
+Panama,2023,82348
+Turkmenistan,2023,81822
+Croatia,2023,80185
+Ivory Coast,2023,79430
+Lithuania,2023,79427
+Azerbaijan,2023,77392
+Ghana,2023,76628
+Uruguay,2023,76244
+Serbia,2023,75015
+Myanmar,2023,74861
+Sri Lanka,NA,NA
+Belarus,2023,68864
+Slovenia,2023,68394
+DR Congo,2023,67512
+Uganda,2023,52390
+Tunisia,2023,51271
+Jordan,2023,50022
+Cameroon,2023,49262
+Bolivia,2023,46796
+Latvia,2023,46668
+Bahrain,2023,44994
+Paraguay,2023,44142
+Estonia,2023,41799
+Nepal,2023,41339
+Libya,2023,40194
+Macau,2023,38480
+Lebanon,NA,NA
+El Salvador,2023,35339
+Honduras,2023,33992
+Zimbabwe,2023,32424
+Cyprus,2023,32032
+Papua New Guinea,2023,31692
+Senegal,2023,31141
+Cambodia,2023,30943
+Iceland,2023,30570
+Georgia,2023,30023
+Zambia,2023,29536
+Trinidad and Tobago,2023,27887
+Bosnia and Herzegovina,2023,26945
+Haiti,2023,25986
+Sudan,2023,25569
+Armenia,2023,24540
+Guinea,2023,23205
+Albania,2023,23032
+Mozambique,2023,21936
+Mali,2023,21309
+Yemen,2023,21045
+Burkina Faso,2023,20785
+Botswana,2023,20756
+Malta,2023,20311
+Benin,2023,19940
+Syria,NA,NA
+Gabon,2023,19319
+Palestine,2021,18109
+Mongolia,2023,18782
+Jamaica,2023,18761
+Nicaragua,2023,17353
+Niger,2023,17073
+North Korea,NA,NA
+Guyana,2023,16329
+Moldova,2023,16000
+North Macedonia,2023,15801
+Madagascar,2023,15763
+Brunei,2023,15153
+Afghanistan,NA,NA
+Mauritius,2023,14819
+Congo,2023,14407
+Laos,2023,14244
+Rwanda,2023,13927
+Bahamas,2023,13876
+Malawi,2023,13176
+Kyrgyzstan,2023,12681
+Namibia,2023,12647
+Chad,2023,12596
+Tajikistan,2023,11816
+Somalia,2023,11515
+Kosovo,2023,10469
+Mauritania,2023,10357
+New Caledonia,NA,NA
+Equatorial Guinea,2023,10041
+Togo,2023,9111
+Monaco,NA,NA
+Bermuda,NA,NA
+Montenegro,2023,7058
+Maldives,2023,6977
+Liechtenstein,NA,NA
+South Sudan,2023,6267
+Barbados,2023,6220
+French Polynesia,NA,NA
+Cayman Islands,NA,NA
+Fiji,2023,5511
+Eswatini,2023,4648
+Liberia,2023,4347
+Djibouti,2023,3873
+Aruba,2023,3827
+Andorra,2023,3692
+Suriname,2023,3539
+Sierra Leone,2023,3519
+Greenland,NA,NA
+Belize,2023,3218
+Burundi,2023,3190
+Central African Republic,2023,2760
+Curaçao,NA,NA
+Bhutan,2023,2686
+Cape Verde,2023,2598
+Saint Lucia,2023,2469
+Gambia,2023,2388
+Lesotho,2023,2373
+Eritrea,NA,NA
+Seychelles,2023,2085
+Zanzibar,NA,NA
+East Timor,2023,2023
+San Marino,2023,1998
+Guinea-Bissau,2023,1991
+Antigua and Barbuda,2023,1949
+Solomon Islands,2023,1690
+Sint Maarten,NA,NA
+British Virgin Islands,NA,NA
+Comoros,2023,1364
+Grenada,2023,1306
+Vanuatu,2023,1166
+Turks and Caicos Islands,NA,NA
+Saint Kitts and Nevis,2023,1069
+Saint Vincent and the Grenadines,2023,1039
+Samoa,2023,939
+Dominica,2023,697
+São Tomé and Príncipe,2023,674
+Tonga,2023,547
+Micronesia,2023,458
+Cook Islands,NA,NA
+Anguilla,NA,NA
+Marshall Islands,2023,277
+Palau,2023,267
+Kiribati,2023,246
+Nauru,2023,150
+Montserrat,NA,NA
